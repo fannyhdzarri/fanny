@@ -1,0 +1,148 @@
+.servicios-wrapper {
+  max-width: 1100px;
+  margin: 30px auto;
+}
+
+h2 {
+  text-align: center;
+  color: #0f5132;
+  font-family: 'Poppins', sans-serif;
+  font-size: 40px;
+}
+
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.servicio-card {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: #14532d;
+}
+
+.servicio-card:hover {
+  transform: translateY(-6px);
+}
+
+.descripcion {
+  font-size: 14px;
+  margin: 15px 0;
+  color: black;
+  font-family: 'Poppins', sans-serif;
+  text-align:left;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.precio {
+  color: #02552b;
+  
+}
+
+.duracion {
+  color: black;
+}
+
+.btn-agendar {
+  background-color: #198754;
+  border: none;
+  padding: 10px;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.btn-agendar:hover {
+  background-color: #20c997;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  width: 300px;
+}
+.barra-busqueda {
+  margin-bottom: 20px;
+}
+
+.barra-busqueda input {
+  padding: 8px;
+  width: 250px;
+  margin-right: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+}
+
+.barra-busqueda button {
+  background-color: #198754;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  transition: 0.3s;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+}
+.barra-busqueda button:hover {
+  background-color: #20c997;
+}
+.barra-busqueda {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+@media (max-width: 768px) {
+
+  .contenedor-servicios {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+  }
+  input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .buscador {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

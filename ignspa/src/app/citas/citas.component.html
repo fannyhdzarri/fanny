@@ -1,0 +1,127 @@
+<div class="citas-wrapper">
+  <div class="card-formulario">
+    <h2>Agendar Cita</h2>
+    <form (ngSubmit)="agendar()" #formCita="ngForm">
+      <!-- FECHA -->
+      <label>
+        Fecha <span class="obligatorio">*</span>
+      </label>
+      <input type="date"
+             [(ngModel)]="nuevaCita.fecha"
+             name="fecha"
+             required
+             #fecha="ngModel">
+      <div class="error" *ngIf="fecha.invalid && fecha.touched">
+        Debe seleccionar una fecha.
+      </div>
+      <!-- HORA -->
+      <label>Hora *</label>
+        <span class="obligatorio">*</span>
+      <select [(ngModel)]="nuevaCita.hora"
+              name="hora"
+              #hora = "ngModel"
+             required>
+      <option value =""> Seleccione un horario</option>
+      <option *ngFor="let h of horarios"
+      [value]="h">
+    {{h}}
+  </option>
+  </select>
+      <div class="error" *ngIf="hora.invalid && hora.touched">
+        Debe seleccionar un horario.
+      </div>
+        <!-- ID CLIENTE -->
+    <p *ngIf="nuevaCita.ID_CLIE">
+Cliente ID: {{ nuevaCita.ID_CLIE }}
+</p>
+      <!-- SERVICIO -->
+      <label>
+        Servicio <span class="obligatorio">*</span>
+      </label>
+      <select [(ngModel)]="nuevaCita.ID_SERVICIO"
+              name="ID_SERVICIO"
+              required
+              #servicio="ngModel">
+        <option value="">Seleccione un servicio</option>
+        <option *ngFor="let s of servicios"
+                [ngValue]="s.ID_SERVICIO">
+          {{ s.nombre }}
+        </option>
+      </select>
+      <div class="error" *ngIf="servicio.invalid && servicio.touched">
+        Debe seleccionar un servicio.
+      </div>
+      <div class="comprobante">
+  <label>Subir comprobante de depósito</label>
+  <input type="file" (change)="onFileSelected($event)">
+</div>
+     <div class="deposito">
+  <label class="checkbox-label">
+    <input type="checkbox" [(ngModel)]="nuevaCita.pagado" name="pagado">
+    <span>He realizado el depósito de $200</span>
+  </label>
+  <p class="aviso">
+  ⚠️ Para confirmar tu cita es necesario realizar un depósito de $200 MXN a la cuenta 
+  4189 1432 1072 6959 
+Banorte a nombre de Ivonne González Nava.
+</p>
+</div>
+      <button type="submit"
+              class="btn-enviar"
+              [disabled]="formCita.invalid || !archivo || !nuevaCita.pagado">
+        Agendar
+      </button>
+    </form>
+  </div>
+  <!-- LISTA DE CITAS -->
+  <div class="card-tabla">
+  <h3>Citas agendadas</h3>
+  <div class="citas-grid">
+    <div class="cita-card" *ngFor="let c of citas">
+      <div class="cita-fecha">
+        📅 {{ c.fecha | date:'dd/MM/yyyy'}}
+      </div>
+      <div class="cita-hora">
+        ⏰ {{ c.hora }}
+      </div>
+      <div class="cita-servicio">
+        💆 Servicio ID: {{ c.servicio }}
+      </div>
+      <div class="cita-cliente">
+        👤 Cliente ID: {{ c.ID_CLIE }}
+      </div>
+        <button 
+         [disabled]="!puedeCancelar(c)"
+         (click)="cancelar(c.NO_CITA)">
+         Cancelar
+       </button>
+  <p *ngIf="!puedeCancelar(c)" class="mensaje">
+  Solo puedes cancelar con 24h de anticipación
+  </p>
+        <button 
+         [disabled]="!puedeCancelar(c)"
+         (click)="abrirReagendar(c)">
+         Reagendar
+        </button>
+    </div>
+  <p *ngIf="citas.length === 0">
+    No hay citas registradas.
+  </p>
+  <div *ngIf="citaSeleccionada" class="modal-reagendar">
+
+  <h3>Reagendar cita</h3>
+
+  <label>Fecha</label>
+  <input type="date" [(ngModel)]="reagendarData.fecha">
+
+  <label>Hora</label>
+  <select [(ngModel)]="reagendarData.hora">
+    <option *ngFor="let h of horarios" [value]="h">{{h}}</option>
+  </select>
+
+  <button (click)="guardarReagendar()">Guardar</button>
+  <button (click)="citaSeleccionada = null">Cancelar</button>
+
+</div>
+</div>
+

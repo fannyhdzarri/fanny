@@ -1,0 +1,77 @@
+/* Fondo de la página */
+.login-wrapper{
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:80vh;
+background:#f4f7f6;
+padding:40px 20px;
+}
+/* Tarjeta */
+.card-formulario{
+background:white;
+padding:35px 40px;
+border-radius:12px;
+width:100%;
+max-width:420px;
+box-shadow:0 8px 25px rgba(0,0,0,0.15);
+display:flex;
+flex-direction:column;
+font-size:15px;
+font-family:'Poppins', sans-serif;
+}
+/* Título */
+.card-formulario h2{
+text-align:center;
+margin-bottom:25px;
+color:#155d38;
+font-weight:600;
+}
+/* Inputs */
+.card-formulario input{
+width:100%;
+padding:12px;
+margin-bottom:12px;
+border-radius:8px;
+border:1px solid #dcdcdc;
+font-size:14px;
+transition:0.2s;
+}
+/* Focus */
+.card-formulario input:focus{
+outline:none;
+border-color:#2bb673;
+box-shadow:0 0 4px rgba(43,182,115,0.4);
+}
+/* Botón principal */
+.card-formulario button[type="submit"]{
+width:100%;
+margin-top:15px;
+padding:12px;
+background:#2bb673;
+border:none;
+border-radius:8px;
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+/* Hover */
+.card-formulario button[type="submit"]:hover{
+background:#239c62;
+}
+/* Botón mostrar contraseña */
+.card-formulario button[type="button"]{
+background:none;
+border:none;
+cursor:pointer;
+font-size:18px;
+margin-bottom:10px;
+}
+/* Error */
+.error{
+color:#e53935;
+font-size:13px;
+margin-bottom:10px;
+}

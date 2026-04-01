@@ -1,0 +1,39 @@
+<div class="login-wrapper">
+    <div class="card-formulario">
+        <h2>Inicia Sesión</h2>
+        <form (ngSubmit)="login()" #formCliente="ngForm">
+        <!----CORREO---->
+        <input type="email"
+        [(ngModel)]="InicioSesion.correo"
+        name="correo"
+        #correo="ngModel"
+        placeholder="Ingresa tu correo electrónico"
+        required>
+        <div class="error"
+            *ngIf="correo.invalid && correo.touched">
+            <div *ngIf="correo.errors?.['required']">
+            El correo es obligatorio.
+            </div>
+            </div>
+        <!----PASSWORD---->
+        <input [type]="verPassword ? 'text' : 'password'"
+        [(ngModel)]="InicioSesion.password"
+        name="password"
+        #password="ngModel"
+        placeholder="Ingresa tu contraseña"
+        required>
+        <button type="button" (click)="verPassword = !verPassword">
+        👁
+        </button>
+        <div class="error"
+            *ngIf="password.invalid && password.touched">
+            <div *ngIf="password.errors?.['required']">
+            La contraseña es obligatoria.
+            </div>
+            </div>
+            <button type="submit">
+            Iniciar sesión
+            </button>
+        </form>
+    </div>
+</div>

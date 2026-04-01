@@ -1,0 +1,94 @@
+/* Fondo general de la página */
+.clientes-wrapper{
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:80vh;
+background:#f4f7f6;
+padding:40px 20px;
+}
+
+/* Tarjeta del formulario */
+.card-formulario{
+background:white;
+padding:35px 40px;
+border-radius:12px;
+width:100%;
+max-width:420px;
+box-shadow:0 8px 25px rgba(0,0,0,0.15);
+display:flex;
+flex-direction:column;
+font-size:15px;
+font-family:'Poppins', sans-serif;
+}
+
+/* Título */
+.card-formulario h2{
+text-align:center;
+margin-bottom:25px;
+color:#155d38;
+font-weight:600;
+}
+
+/* Inputs */
+.card-formulario input{
+width:100%;
+padding:12px;
+margin-bottom:12px;
+border-radius:8px;
+border:1px solid #dcdcdc;
+font-size:14px;
+transition:0.2s;
+}
+
+/* Animación al seleccionar input */
+.card-formulario input:focus{
+outline:none;
+border-color:#2bb673;
+box-shadow:0 0 4px rgba(43,182,115,0.4);
+}
+
+/* Botón */
+.card-formulario button{
+width:100%;
+margin-top:10px;
+padding:12px;
+background:#2bb673;
+border:none;
+border-radius:8px;
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+/* Hover del botón */
+.card-formulario button:hover{
+background:#239c62;
+}
+
+/* Texto inferior */
+.card-formulario p{
+margin-top:15px;
+text-align:center;
+font-size:14px;
+}
+
+/* Link de login */
+.card-formulario a{
+color:#2bb673;
+font-weight:bold;
+text-decoration:none;
+}
+
+.card-formulario a:hover{
+text-decoration:underline;
+}
+
+/* Mensajes de error */
+.error{
+color:#e53935;
+font-size:13px;
+margin-bottom:10px;
+}

@@ -1,0 +1,45 @@
+<div class="servicios-wrapper">
+<div class="barra-busqueda">
+
+  <input type="text"
+         placeholder="Buscar servicio..."
+         [(ngModel)]="busqueda">
+
+  <button (click)="buscarServicios()">
+    Buscar
+  </button>
+   <button (click)="limpiarBusqueda()">
+    Limpiar
+  </button>
+
+</div>
+  <h2>Nuestros Servicios</h2>
+
+  <div class="servicios-grid">
+    <div class="servicio-card" *ngFor="let servicio of resultados">
+
+      <h3>{{ servicio.nombre }}</h3>
+
+      <p class="descripcion">
+        {{ servicio.descripcion }}
+      </p>
+
+      <div class="info">
+        <span class="precio">
+          ${{ servicio.precio }}
+        </span>
+
+        <span class="duracion">
+          ⏱ {{ servicio.duracion }}
+        </span>
+      </div>
+
+      <button class="btn-agendar"
+        (click)="irACitas(servicio)">
+         Agendar
+        </button>
+    </div>
+  </div>
+
+
+

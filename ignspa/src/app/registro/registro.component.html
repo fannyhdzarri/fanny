@@ -1,0 +1,82 @@
+<div class="clientes-wrapper">
+    <div class="card-formulario">
+        <h2>Registrate</h2>
+        <form (ngSubmit)="registrar()" #formCliente="ngForm">
+        <!----NOMBRE---->
+            <input type="text"
+            [(ngModel)]="NuevoCliente.nombre"
+            name="nombre"
+            #nombre="ngModel"
+            placeholder="Ingresa tu nombre completo"
+            required>
+            <div class="error"
+            *ngIf="nombre.invalid && nombre.touched">
+            <div *ngIf="nombre.errors?.['required']">
+            El nombre es obligatorio.
+            </div>
+            </div>
+        <!----TELEFONO---->
+            <input type="text"
+            [(ngModel)]="NuevoCliente.tel"
+            name="tel"
+            #tel="ngModel"
+            placeholder="Ingresa tu número de teléfono"
+            required>
+            <div class="error"
+            *ngIf="tel.invalid && tel.touched">
+            <div *ngIf="tel.errors?.['required']">
+            El número de teléfono es obligatorio.
+            </div>
+            </div>
+        <!----CORREO---->
+            <input type="email"
+            [(ngModel)]="NuevoCliente.correo"
+            name="correo"
+            #correo="ngModel"
+            placeholder="Ingresa tu correo electrónico"
+            required
+            email>
+            <div class="error"
+            *ngIf="correo.invalid && correo.touched">
+            <div *ngIf="correo.errors?.['required']">
+            El correo electrónico es obligatorio.
+            </div>
+            </div>
+        <!----EDAD---->
+            <input type="number"
+            [(ngModel)]="NuevoCliente.edad"
+            name="edad"
+            #edad="ngModel"
+            placeholder="Edad"
+            required>
+            <div class="error"
+            *ngIf="edad.invalid && edad.touched">
+            <div *ngIf="edad.errors?.['required']">
+            La edad es obligatoria.
+            </div>
+            </div>
+        <!----CONTRASEÑA---->
+            <input type="password"
+            [(ngModel)]="NuevoCliente.password"
+            name="contraseña"
+            #password="ngModel"
+            placeholder="Crea una contraseña mínimo 8 caracteres"
+            required
+            minlength="8">
+            <div class="error"
+            *ngIf="password.invalid && password.touched">
+            <div *ngIf="password.errors?.['required']">
+            La contraseña es obligatoria.
+            </div>
+            <div *ngIf="password.errors?.['minlength']">
+            Debe tener mínimo 8 caracteres.
+            </div>
+            </div>
+                <button type="submit" [disabled]="formCliente.invalid">Registrarse</button>
+                <p>
+                ¿Ya tienes cuenta?
+                <a routerLink="/login">Inicia sesión</a>
+                </p>
+        </form>
+    </div>
+</div>

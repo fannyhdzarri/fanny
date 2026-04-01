@@ -1,0 +1,90 @@
+<header class="header">
+  <!--Barra del logo-->
+  <div class="top-header">
+    <div class="logo-container">
+    <img src="assets/LogoIGN.png" alt="IGN Logo" class="logo-img">
+  </div>
+  <div class="banner-texto">
+    <p>Bienvenido a IGN</p> 
+    <p>donde tu bienestar es nuestra prioridad</p>
+  </div>
+<div class="titulo-spa">
+    IGN Centro de Spa
+  </div>
+  </div>
+  <nav class="navbar">
+    <div class="menu-izquierda">
+      <button routerLink="/inicio" routerLinkActive="activo">
+      Inicio
+      </button>
+      <button routerLink="/servicios" routerLinkActive="activo">
+      Servicios
+      </button>
+
+      <button routerLink="/opiniones" routerLinkActive="activo">
+      Opiniones
+     </button>
+   
+      <button routerLink="/citas"routerLinkActive="activo">
+      Citas
+      </button>
+    </div>
+    <div class="menu-derecha">
+      <button *ngIf="!cliente" routerLink="/login">
+      Iniciar sesión
+     </button>
+      <div *ngIf="cliente" class="usuario">
+        <span class="nombre-usuario">
+        Bienvenido {{ cliente.nombre }}
+        </span>
+        <button (click)="logout()">
+        Cerrar sesión
+        </button>
+      </div>
+    </div>
+
+    <button routerLink="/registro"routerLinkActive="activo">
+      Registrate
+    </button>
+  </nav>
+</header>
+<main>
+  <router-outlet></router-outlet>
+</main>
+<footer class="footer">
+
+  <div class="footer-contenido">
+
+    <!-- Información -->
+    <div class="footer-seccion">
+      <h3>IGN Centro de Spa</h3>
+      <p>Relájate, renueva y cuida tu piel</p>
+      <p>📍 Calle Costa Rica 602-C Poza Rica, Veracruz</p>
+      <p>📞 782-123-4192</p>
+    </div>
+
+    <!-- Redes sociales -->
+    <div class="footer-seccion">
+      <h3>Redes sociales</h3>
+
+      <a href="https://www.facebook.com/jabones.artesanales.IGN" target="_blank">Facebook</a>
+      <a href="https://www.instagram.com/ign.spa/" target="_blank">Instagram</a>
+
+      <h4>Contáctanos por WhatsApp</h4>
+
+      <img 
+        src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://wa.me/5217821234192"
+        alt="QR WhatsApp"
+        class="qr"
+      >
+
+      <p>Escanea para agendar</p>
+    </div>
+
+  </div>
+
+  <div class="footer-copy">
+    © 2026 IGN Centro de Spa
+  </div>
+
+</footer>

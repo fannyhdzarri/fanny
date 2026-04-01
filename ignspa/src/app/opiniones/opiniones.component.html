@@ -1,0 +1,91 @@
+<div class="opiniones-wrapper">
+  <div class="card-formulario">
+    <h2>Deja tu opinión</h2>
+    <form (ngSubmit)="enviarOpinion()" #formOpinion="ngForm">
+  <!-- CALIFICACIÓN -->
+  <label>
+    Calificación <span class="obligatorio">*</span>
+  </label>
+  <select
+      [(ngModel)]="nuevaOpinion.calificacion"
+      name="calificacion"
+      required
+      #calificacion="ngModel">
+    <option value="">Seleccione una calificación</option>
+    <option [value]="5">⭐⭐⭐⭐⭐ Excelente</option>
+    <option [value]="4">⭐⭐⭐⭐ Muy bueno</option>
+    <option [value]="3">⭐⭐⭐ Bueno</option>
+    <option [value]="2">⭐⭐ Regular</option>
+    <option [value]="1">⭐ Malo</option>
+  </select>
+  <div class="error"
+       *ngIf="calificacion.invalid && calificacion.touched">
+    Debe seleccionar una calificación.
+  </div>
+  <!-- OPINIÓN -->
+  <label>
+    Opinión <span class="obligatorio">*</span>
+  </label>
+  <textarea
+      [(ngModel)]="nuevaOpinion.opinion"
+      name="opinion"
+      placeholder="Escribe tu experiencia (mínimo 10 caracteres)"
+      required
+      minlength="10"
+      maxlength="250"
+      #opinion="ngModel">
+  </textarea>
+  <div class="error"
+       *ngIf="opinion.invalid && opinion.touched">
+    <div *ngIf="opinion.errors?.['required']">
+      La opinión es obligatoria.
+    </div>
+    <div *ngIf="opinion.errors?.['minlength']">
+      Debe tener mínimo 10 caracteres.
+    </div>
+  </div>
+  <!-- SERVICIO -->
+  <label>
+    Servicio <span class="obligatorio">*</span>
+  </label>
+  <select
+      [(ngModel)]="nuevaOpinion.ID_SERVICIO"
+      name="id_servicio"
+      required
+      #servicio="ngModel">
+    <option value="">Seleccione un servicio</option>
+    <option *ngFor="let s of servicios"
+            [ngValue]="s.ID_SERVICIO">
+      {{ s.nombre }}
+    </option>
+  </select>
+  <div class="error"
+       *ngIf="servicio.invalid && servicio.touched">
+    Debe seleccionar un servicio.
+  </div>
+  <button type="submit"
+          class="btn-enviar"
+          [disabled]="formOpinion.invalid">
+    Enviar Opinión
+  </button>
+</form>
+  </div>
+ <div class="card-tabla">
+  <h3>Opiniones de nuestros clientes</h3>
+  <div class="opiniones-grid">
+    <div class="opinion-card" *ngFor="let op of opiniones">
+      <div class="rating">
+        {{ '⭐'.repeat(op.calificacion) }}
+      </div>
+      <p class="texto">
+        {{ op.opinion }}
+      </p>
+      <span class="servicio">
+        {{ op.servicio }}
+      </span>
+    </div>
+  </div>
+</div>
+<p *ngIf="opiniones.length === 0">
+  No hay opiniones registradas.
+</p>
