@@ -1,4 +1,4 @@
-const conexion = require('../database');
+const pool = require('../database');
 
 const Opiniones = {
 
@@ -15,16 +15,16 @@ const Opiniones = {
         ORDER BY o.ID_OPINION DESC
     `;
 
-    conexion.query(sql, callback);
+    pool.query(sql, callback);
     },
 
     obtenerPorId: (id, callback) => {
-        conexion.query("SELECT * FROM opiniones WHERE ID_OPINION = ?", [id], callback);
+        pool.query("SELECT * FROM opiniones WHERE ID_OPINION = ?", [id], callback);
     },
 
     crear: (datos, callback) => {
         const sql = "INSERT INTO opiniones (calificacion, opinion, ID_SERVICIO) VALUES (?,?,?)";
-        conexion.query(sql, [datos.calificacion, datos.opinion, datos.ID_SERVICIO], callback);
+        pool.query(sql, [datos.calificacion, datos.opinion, datos.ID_SERVICIO], callback);
     }
 };
 

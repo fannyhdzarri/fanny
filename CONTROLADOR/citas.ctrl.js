@@ -1,4 +1,4 @@
-const conexion = require('../database');
+const pool = require('../database');
 const Citas = require('../MODELO/citas.model');
 const multer = require('multer');
 
@@ -56,7 +56,7 @@ exports.listarTodas = (req, res) => {
     WHERE c.fecha >= CURDATE()
     ORDER BY c.fecha, c.hora
     `;
-    conexion.query(sql, (err, resultado) => {
+    pool.query(sql, (err, resultado) => {
     if(err){
       console.log(err);
       return res.status(500).json(err);
@@ -78,7 +78,7 @@ exports.listarPorCliente = (req, res) => {
   ORDER BY c.fecha, c.hora
   `;
 
-  conexion.query(sql, [id], (err, resultado) => {
+  pool.query(sql, [id], (err, resultado) => {
 
     if(err){
       console.log(err);
@@ -95,7 +95,7 @@ exports.eliminar = (req, res) => {
   
   const sql = "DELETE FROM citas WHERE  NO_CITA = ? ";
 
-  conexion.query(sql, [id], (err, resultado) => {
+  pool.query(sql, [id], (err, resultado) => {
 
     if(err){
       console.log(err);
@@ -113,7 +113,7 @@ exports.reagendar = (req, res) => {
   const { fecha, hora } = req.body;
   // Buscar cita
   const sqlBuscar = "SELECT fecha, hora FROM citas WHERE NO_CITA = ?";
-  conexion.query(sqlBuscar, [id], (err, resultado) => {
+  pool.query(sqlBuscar, [id], (err, resultado) => {
     if (err) return res.status(500).json(err);
     if (resultado.length === 0) {
       return res.status(404).json({ mensaje: "Cita no encontrada" });
@@ -130,7 +130,7 @@ exports.reagendar = (req, res) => {
     }
     // Actualizar cita
     const sqlUpdate = "UPDATE citas SET fecha = ?, hora = ? WHERE NO_CITA = ?";
-    conexion.query(sqlUpdate, [fecha, hora, id], (err2) => {
+    pool.query(sqlUpdate, [fecha, hora, id], (err2) => {
       if (err2) return res.status(500).json(err2);
       res.json({ mensaje: "Cita reagendada correctamente" });
     });

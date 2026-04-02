@@ -1,5 +1,5 @@
 const Auth = require('../MODELO/auth.model');
-const conexion = require('../database');
+const pool = require('../database');
 
 exports.registrar = (req, res) => {
 
@@ -16,7 +16,7 @@ exports.registrar = (req, res) => {
   VALUES (?,?,?,?,?)
   `;
 
-  conexion.query(sql, [
+  pool.query(sql, [
     NuevoCliente.nombre,
     NuevoCliente.tel,
     NuevoCliente.correo,

@@ -1,11 +1,11 @@
-const conexion = require('../database');
+const pool = require('../database');
 const Auth = {
   registrar: (datos, callback) => {
     const sql = `
       INSERT INTO clientes (nombre, tel, correo, edad, password)
       VALUES (?, ?, ?, ?, ?)
     `;
-    conexion.query(sql, [
+    pool.query(sql, [
       datos.nombre,
       datos.tel,
       datos.correo,

@@ -1,4 +1,4 @@
-const conexion = require('../database');
+const pool = require('../database');
 const Citas = {
   obtenerTodos: (callback) => {
     const sql = `
@@ -15,14 +15,14 @@ const Citas = {
         ORDER BY citas.fecha ASC, citas.hora ASC
     `;
 
-    conexion.query(sql, callback);
+    pool.query(sql, callback);
 },
 verificarDisponibilidad: (fecha, hora, callback) => {
     const sql = `
          SELECT * FROM citas
         WHERE fecha = ? AND hora = ?
     `;
-    conexion.query(sql, [fecha, hora], callback);
+    pool.query(sql, [fecha, hora], callback);
 },    
 crear: (datos, callback) => {
         const sql = `
@@ -31,7 +31,7 @@ crear: (datos, callback) => {
             VALUES (?, ?, ?, ?, ?)
         `;
 
-        conexion.query(sql, [
+        pool.query(sql, [
             datos.fecha,
             datos.hora,
             datos.ID_CLIE,

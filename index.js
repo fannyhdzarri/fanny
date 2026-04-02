@@ -1,7 +1,17 @@
 const express = require('express');
 const cors = require('cors');
-const mysql = require("mysql");
+const mysql = require("mysql2");
 
+const pool = mysql.createPool({
+    host: process.env.MYSQLHOST,
+    user: process.env.MYSQLUSER,
+    password: process.env.MYSQLPASSWORD,
+    database: process.env.MYSQLDATABASE,
+    port: process.env.MYSQLPORT,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
+});
 const servidor = express();
 
 servidor.use(cors({ origin: "*" }));
@@ -23,26 +33,9 @@ servidor.use('/api/auth', authRoutes);
 // PUERTO
 servidor.set('port', process.env.PORT || 3000);
 
-// CONEXIÓN MYSQL (Railway)
-const conexion = mysql.createConnection({
-    host: process.env.MYSQLHOST,
-    user: process.env.MYSQLUSER,
-    password: process.env.MYSQLPASSWORD,
-    database: process.env.MYSQLDATABASE,
-    port: process.env.MYSQLPORT
-});
-
-conexion.connect((error) => {
-    if (error) {
-        console.error("Error de conexión:", error);
-    } else {
-        console.log("Conectado a MySQL");
-    }
-});
-
 // PRUEBA
 servidor.get("/bd", (req, res) => {
-    conexion.query('SELECT * FROM clientes', (error, resultados) => {
+    pool.query('SELECT * FROM clientes', (error, resultados) => {
         if (error) {
             return res.status(500).json(error);
         }
