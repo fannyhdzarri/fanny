@@ -2,12 +2,12 @@ import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
-
+const API = 'https://fanny-production.up.railway.app';
 @Injectable({ providedIn: 'root' })
 
 export class AuthService {
 
-  private api = 'http://localhost:4001/api/auth';
+  private api = `${API}/api/auth`;
 
   private clienteSubject = new BehaviorSubject<any>(null);
   cliente$ = this.clienteSubject.asObservable();

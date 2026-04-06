@@ -1,6 +1,5 @@
 import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { RouterModule, RouterOutlet, Router } from '@angular/router';
-import { IGNapiService } from './ignapi.service';
 import { OpinionesComponent } from './opiniones/opiniones.component';
 import { CommonModule, isPlatformBrowser} from '@angular/common';
 import { AuthService } from './servicios/auth.service';

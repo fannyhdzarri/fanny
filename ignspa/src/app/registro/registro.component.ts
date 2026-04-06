@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
-
+const API = 'https://fanny-production.up.railway.app';
 @Component({
   selector: 'app-registro',
   standalone: true,
@@ -30,7 +30,7 @@ export class RegistroComponent {
     console.log("Datos enviados", this.NuevoCliente);
     
 
-    this.http.post('http://localhost:4001/api/auth/registro', this.NuevoCliente)
+    this.http.post(`${API}/api/auth/registro`, this.NuevoCliente)
       .subscribe({
         next: () => {
 

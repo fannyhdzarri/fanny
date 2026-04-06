@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import {ActivatedRoute } from '@angular/router';
 import { CitasService } from '../servicios/citas.service';
-
+const API = 'https://fanny-production.up.railway.app';
 @Component({
   standalone: true,
   selector: 'app-citas',
@@ -12,6 +12,7 @@ import { CitasService } from '../servicios/citas.service';
   styleUrls: ['./citas.component.css'],
   imports: [CommonModule, FormsModule]
 })
+
 export class CitasComponent implements OnInit {
 
   citas: any[] = [];
@@ -66,7 +67,7 @@ esFutura(cita: any): boolean {
     }
   }
     //cargar servicios
-    this.http.get<any[]>('http://localhost:4001/api/servicios')
+this.http.get<any[]>(`${API}/api/servicios`)
     .subscribe(data => {
       this.servicios = data;
     });
@@ -77,7 +78,7 @@ esFutura(cita: any): boolean {
       }
     });
     this.cargarCitas();
-    this.http.get<any[]>('http://localhost:4001/api/servicios')
+this.http.get<any[]>(`${API}/api/servicios`)
       .subscribe(data => {
         this.servicios = data;
       });
@@ -93,14 +94,14 @@ const cliente = JSON.parse(localStorage.getItem("cliente") || "{}");
 
 if(cliente.rol === "admin"){
 
-  this.http.get<any[]>('http://localhost:4001/api/citas')
+this.http.get<any[]>(`${API}/api/citas`)
   .subscribe(data=>{
     this.citas = data.filter(c => this.esFutura(c));
   });
 
 }else{
 
-  this.http.get<any[]>(`http://localhost:4001/api/citas/${cliente.ID_CLIE}`)
+this.http.get<any[]>(`${API}/api/citas/${cliente.ID_CLIE}`)
   .subscribe(data=>{
     this.citas = data;
   });
@@ -131,7 +132,7 @@ if(cliente.rol === "admin"){
     formData.append('comprobante', this.archivo);
   }
 
-  this.http.post('http://localhost:4001/api/citas', formData)
+  this.http.post(`${API}/api/citas`, formData)
     .subscribe({
       next: () => {
         alert("Cita agendada correctamente");
@@ -148,7 +149,7 @@ cancelar(id:number){
     return;
   }
 
-  this.http.delete(`http://localhost:4001/api/citas/${id}`)
+  this.http.delete(`${API}/api/citas/${id}`)
   .subscribe({
     next:()=>{
 
@@ -180,10 +181,8 @@ guardarReagendar() {
 
   if (!this.citaSeleccionada) return;
 
-  this.http.put(
-    `http://localhost:4001/api/citas/${this.citaSeleccionada.NO_CITA}`,
-    this.reagendarData
-  ).subscribe({
+  this.http.put(`${API}/api/citas/${this.citaSeleccionada.NO_CITA}`, this.reagendarData)
+  .subscribe({
     next: () => {
       alert("Cita reagendada correctamente");
       this.citaSeleccionada = null;

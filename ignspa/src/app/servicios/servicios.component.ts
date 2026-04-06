@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CitasService } from '../servicios/citas.service';
 import {Router} from '@angular/router';
-
+const API = 'https://fanny-production.up.railway.app';
 @Component({
   standalone: true,
   selector: 'app-servicios',
@@ -34,7 +34,7 @@ export class ServiciosComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-  this.http.get<any[]>('http://localhost:4001/api/servicios')
+  this.http.get<any[]>(`${API}/api/servicios`)
     .subscribe(data => {
       this.servicios = data;
       this.resultados = data; // mostrar todos al inicio

@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; // 
 import { OpinionesService } from '../servicios/opiniones.service';
 import { HttpClient } from '@angular/common/http';
-
+const API = 'https://fanny-production.up.railway.app';
 @Component({
   standalone: true,
   selector: 'app-opiniones',
@@ -25,7 +25,7 @@ export class OpinionesComponent implements OnInit {
   ) {}
   opiniones: any[] = [];
   ngOnInit() {
-  this.http.get<any[]>('http://localhost:4001/api/servicios')
+this.http.get<any[]>(`${API}/api/servicios`)
     .subscribe(data => {
       console.log("Servicios recibidos:", data);
       this.servicios = data;

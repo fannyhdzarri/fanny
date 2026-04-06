@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+const API = 'https://fanny-production.up.railway.app';
 @Injectable({ providedIn: 'root' })
 export class CitasService {
 
-  private api = 'http://localhost:4001/api/citas';
+  private api = `${API}/api/citas`;
 
   constructor(private http: HttpClient) {}
 
