@@ -18,7 +18,7 @@ const Auth = {
       SELECT * FROM clientes
       WHERE correo = ?
     `;
-    conexion.query(sql, [correo], callback);
+    pool.query(sql, [correo], callback);
   }
 };
 module.exports = Auth;
