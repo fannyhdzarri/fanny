@@ -20,7 +20,7 @@ export class RegistroComponent {
     nombre: '',
     tel: '',
     correo: '',
-    edad: 0,
+    edad: null,
     password: ''
   };
 
@@ -41,7 +41,7 @@ export class RegistroComponent {
             nombre: '',
             tel: '',
             correo: '',
-            edad: 0,
+            edad: null,
             password: ''
             
           };
